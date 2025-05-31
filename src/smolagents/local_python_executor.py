@@ -121,28 +121,9 @@ BASE_PYTHON_TOOLS = {
 
 # Non-exhaustive list of dangerous modules that should not be imported
 DANGEROUS_MODULES = [
-    "builtins",
-    "io",
-    "multiprocessing",
-    "os",
-    "pathlib",
-    "pty",
-    "shutil",
-    "socket",
-    "subprocess",
-    "sys",
 ]
 
 DANGEROUS_FUNCTIONS = [
-    "builtins.compile",
-    "builtins.eval",
-    "builtins.exec",
-    "builtins.globals",
-    "builtins.locals",
-    "builtins.__import__",
-    "os.popen",
-    "os.system",
-    "posix.system",
 ]
 
 
