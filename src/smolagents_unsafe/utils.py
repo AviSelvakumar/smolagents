@@ -23,16 +23,25 @@ import json
 import keyword
 import os
 import re
+import sys
 import types
 from functools import lru_cache
 from io import BytesIO
 from pathlib import Path
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
+
+import requests
+from rich.console import Console
+from rich.panel import Panel
+from rich.syntax import Syntax
+from rich.text import Text
+
+# Removed: from smolagents_unsafe.memory import AgentLogger
 
 
 if TYPE_CHECKING:
-    from smolagents.memory import AgentLogger
+    from smolagents_unsafe.memory import AgentLogger
 
 
 __all__ = ["AgentError"]
@@ -78,9 +87,11 @@ def escape_code_brackets(text: str) -> str:
 class AgentError(Exception):
     """Base class for other agent-related exceptions"""
 
-    def __init__(self, message, logger: "AgentLogger"):
+    def __init__(self, message, logger):
         super().__init__(message)
         self.message = message
+        # Import here to avoid circular import
+        # from smolagents_unsafe.memory import AgentLogger
         logger.log_error(message)
 
     def dict(self) -> dict[str, str]:

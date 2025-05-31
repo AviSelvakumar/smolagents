@@ -1,6 +1,6 @@
 from dataclasses import asdict, dataclass
 from logging import getLogger
-from typing import TYPE_CHECKING, Any, TypedDict
+from typing import TYPE_CHECKING, Any, TypedDict, Dict, List, Optional, Union
 
 from smolagents_unsafe.models import ChatMessage, MessageRole
 from smolagents_unsafe.monitoring import AgentLogger, LogLevel, Timing, TokenUsage

@@ -1,6 +1,9 @@
 import argparse
 from io import BytesIO
 from time import sleep
+import os
+import time
+from typing import Any, Dict, List, Optional, Union
 
 import helium
 import PIL.Image
@@ -9,9 +12,14 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
-from smolagents import CodeAgent, WebSearchTool, tool
-from smolagents.agents import ActionStep
-from smolagents.cli import load_model
+import requests
+from rich.console import Console
+from rich.panel import Panel
+from rich.syntax import Syntax
+from rich.text import Text
+
+from smolagents_unsafe.agents import ActionStep
+from smolagents_unsafe.cli import load_model
 
 
 github_request = """

@@ -19,9 +19,17 @@ from __future__ import annotations
 
 import warnings
 from types import TracebackType
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
 
-from smolagents.tools import Tool
+import json
+import os
+import requests
+from rich.console import Console
+from rich.panel import Panel
+from rich.syntax import Syntax
+from rich.text import Text
+
+from smolagents_unsafe.tools import Tool
 
 
 __all__ = ["MCPClient"]

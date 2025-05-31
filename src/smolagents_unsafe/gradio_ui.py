@@ -17,13 +17,19 @@ import os
 import re
 import shutil
 from pathlib import Path
-from typing import Generator
+from typing import Generator, Any, Callable, Dict, List, Optional, Union
 
-from smolagents.agent_types import AgentAudio, AgentImage, AgentText
-from smolagents.agents import MultiStepAgent, PlanningStep
-from smolagents.memory import ActionStep, FinalAnswerStep
-from smolagents.models import ChatMessageStreamDelta
-from smolagents.utils import _is_package_available
+import gradio as gr
+from rich.console import Console
+from rich.panel import Panel
+from rich.syntax import Syntax
+from rich.text import Text
+
+from smolagents_unsafe.agent_types import AgentAudio, AgentImage, AgentText
+from smolagents_unsafe.agents import MultiStepAgent, PlanningStep
+from smolagents_unsafe.memory import ActionStep, FinalAnswerStep
+from smolagents_unsafe.models import ChatMessageStreamDelta
+from smolagents_unsafe.utils import _is_package_available
 
 
 def get_step_footnote_content(step_log: ActionStep | PlanningStep, step_name: str) -> str:
@@ -88,8 +94,6 @@ def _process_action_step(step_log: ActionStep, skip_model_outputs: bool = False)
     Yields:
         `gradio.ChatMessage`: Gradio ChatMessages representing the action step.
     """
-    import gradio as gr
-
     # Output the step number
     step_number = f"Step {step_log.step_number}"
     if not skip_model_outputs:
@@ -171,8 +175,6 @@ def _process_planning_step(step_log: PlanningStep, skip_model_outputs: bool = Fa
     Yields:
         `gradio.ChatMessage`: Gradio ChatMessages representing the planning step.
     """
-    import gradio as gr
-
     if not skip_model_outputs:
         yield gr.ChatMessage(role="assistant", content="**Planning step**", metadata={"status": "done"})
         yield gr.ChatMessage(role="assistant", content=step_log.plan, metadata={"status": "done"})
@@ -192,8 +194,6 @@ def _process_final_answer_step(step_log: FinalAnswerStep) -> Generator:
     Yields:
         `gradio.ChatMessage`: Gradio ChatMessages representing the final answer.
     """
-    import gradio as gr
-
     final_answer = step_log.output
     if isinstance(final_answer, AgentText):
         yield gr.ChatMessage(

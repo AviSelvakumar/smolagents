@@ -27,7 +27,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.tree import Tree
 
-from smolagents.utils import escape_code_brackets
+from smolagents_unsafe.utils import escape_code_brackets
 
 
 __all__ = ["AgentLogger", "LogLevel", "Monitor", "TokenUsage", "Timing"]

@@ -15,12 +15,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import argparse
+import json
 import os
+import sys
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Union
+
+import requests
+from rich.console import Console
+from rich.panel import Panel
+from rich.syntax import Syntax
+from rich.text import Text
 
 from dotenv import load_dotenv
 
-from smolagents import CodeAgent, InferenceClientModel, LiteLLMModel, Model, OpenAIServerModel, Tool, TransformersModel
-from smolagents.default_tools import TOOL_MAPPING
+from smolagents_unsafe import CodeAgent, InferenceClientModel, LiteLLMModel, Model, OpenAIServerModel, Tool, TransformersModel
+from smolagents_unsafe.default_tools import TOOL_MAPPING
 
 
 leopard_prompt = "How many seconds would it take for a leopard at full speed to run through Pont des Arts?"
