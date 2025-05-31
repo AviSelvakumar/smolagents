@@ -3,9 +3,9 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "smolagents"
+name = "smolagents-unsafe"
 version = "1.18.0.dev0"
-description = "🤗 smolagents: a barebones library for agents. Agents write python code to call tools or orchestrate other agents."
+description = "🫣 smolagents-unsafe: a barebones library for agents. Agents write python code to call tools or orchestrate other agents."
 authors = [
   { name="Aymeric Roucher", email="aymeric@hf.co" },
 ]
